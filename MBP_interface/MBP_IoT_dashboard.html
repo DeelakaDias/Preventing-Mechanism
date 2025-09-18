@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="mas-holdings-logo-png.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBP Dashboard</title>
+    <link rel="stylesheet" href="MBP_IoT_css.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Machine Breakdown Prediction - Dashboard</h1>
+            <h4>Real-time monitoring and data management system</h4>
+        </div>
+
+        <div class="dashboard-tabs">
+            <button class="tab-button active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-button" onclick="showTab('machine-entry')">Machine Entry</button>
+            <button class="tab-button" onclick="showTab('downtime-entry')">Downtime Entry</button>
+            <!-- <button class="tab-button" onclick="showTab('iot-data')">IoT Monitoring</button> -->
+        </div>  
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="metrics-grid">
+
+            <div class="metric-card">
+                <div class="metric-value rpm" id="metricRPM">0</div>
+                <div class="metric-label">Max RPM</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value vibration" id="metricVibration">0</div>
+                <div class="metric-label">Max Vibration Level</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value current" id="metricCurrent">0</div>
+                <div class="metric-label">Max Current (A)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value runtime" id="metricRuntime">0</div>
+                <div class="metric-label">Runtime (mins)</div>
+            </div>
+
+            </div>
+
+            <div class="card">
+                <h2>Machine Status Overview</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Machine Serial</th>
+                            <th>Brand</th>
+                            <th>Plant</th>
+                            <th>Status</th>
+                            <th>Last Service</th>
+                        </tr>
+                    </thead>
+                    <tbody id="machineStatusTable">
+                        <tr data-rpm="847" data-vibration="2.3" data-current="15.2" data-runtime="247">
+                            <td>MSN001</td>
+                            <td>Brother</td>
+                            <td>Plant A</td>
+                            <td><span class="status-indicator status-running"></span>Running</td>
+                            <td>2025-08-30 09:50</td>
+                        </tr>
+                        <tr data-rpm="900" data-vibration="1.8" data-current="14.5" data-runtime="300">
+                            <td>MSN002</td>
+                            <td>Vitoni</td>
+                            <td>Plant B</td>
+                            <td><span class="status-indicator status-maintenance"></span>Maintenance</td>
+                            <td>2025-08-23 15:20</td>
+                        </tr>
+              
+                        <tr data-rpm="1500" data-vibration="3.5" data-current="12.5" data-runtime="500">
+                            <td>MSN003</td>
+                            <td>Juki</td>
+                            <td>Plant C</td>
+                            <td><span class="status-indicator status-down"></span>Down</td>
+                            <td>2025-06-16 18:10</td>
+                        </tr>
+
+                        <tr data-rpm="1200" data-vibration="2.0" data-current="14.0" data-runtime="300">
+                            <td>MSN004</td>
+                            <td>Pegasus</td>
+                            <td>Plant D</td>
+                            <td><span class="status-indicator status-idle"></span>Idle</td>
+                            <td>2025-09-10 14:25</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- Machine Entry Tab -->
+        <div id="machine-entry" class="tab-content">
+            <div class="card">
+                <h2>Machine Information Entry</h2>
+                <div id="machineAlert"></div>
+                <form id="machineForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="machineSerialNumber">Machine Serial Number</label>
+                            <input type="text" id="machineSerialNumber" name="machineSerialNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <select id="brand" name="brand" required>
+                                <option value="">Select Brand</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Singer">Singer</option>
+                                <option value="Juki">Juki</option>
+                                <option value="Pfaff">Pfaff</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" id="model" name="model" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plant">Plant</label>
+                            <select id="plant" name="plant" required>
+                                <option value="">Select Plant</option>
+                                <option value="Plant A">Plant A</option>
+                                <option value="Plant B">Plant B</option>
+                                <option value="Plant C">Plant C</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceDate">Service Date</label>
+                            <input type="date" id="serviceDate" name="serviceDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="needleType">Needle Type</label>
+                            <select id="needleType" name="needleType" required>
+                                <option value="">Select Needle Type</option>
+                                <option value="Universal">Universal</option>
+                                <option value="Ballpoint">Ballpoint</option>
+                                <option value="Sharp">Sharp</option>
+                                <option value="Heavy Duty">Heavy Duty</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fabricType">Fabric Type</label>
+                            <input type="text" id="fabricType" name="fabricType" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="operation">Operation</label>
+                            <input type="text" id="operation" name="operation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="styleNumber">Style Number</label>
+                            <input type="text" id="styleNumber" name="styleNumber" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Machine</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Downtime Entry Tab -->
+        <div id="downtime-entry" class="tab-content">
+            <div class="card">
+                <h2>Downtime Entry</h2>
+                <div id="downtimeAlert"></div>
+                <form id="downtimeForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="downtimeMachineSerial">Machine Serial Number</label>
+                            <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="downTimeDateTime">Down Time Date & Time</label>
+                            <input type="datetime-local" id="downTimeDateTime" name="dateTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="downTimeReasonCode">Reason Code</label>
+                            <select id="downTimeReasonCode" name="downTimeReasonCode" required>
+                                <option value="">Select Reason Code</option>
+                                <option value="MEC">Mechanical</option>
+                                <option value="ELE">Electrical</option>
+                                <option value="MAT">Material</option>
+                                <option value="OPR">Operator</option>
+                                <option value="QUA">Quality</option>
+                                <option value="MAI">Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="downtimeReasonDescription">Reason Description</label>
+                            <textarea id="downtimeReasonDescription" name="downtimeReasonDescription" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Record Downtime</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Recent Downtime Records</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Machine Serial</th>
+                            <th>Date & Time</th>
+                            <th>Reason Code</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="downtimeTable">
+                        <tr>
+                            <td>MSN001</td>
+                            <td>2025-09-18 10:30</td>
+                            <td>MEC</td>
+                            <td>Belt replacement required</td>
+                        </tr>
+                        <tr>
+                            <td>MSN003</td>
+                            <td>2025-09-18 09:15</td>
+                            <td>ELE</td>
+                            <td>Motor overheating</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- IoT Data Tab -->
+        <!-- <div id="iot-data" class="tab-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value rpm" id="liveRPM">0</div>
+                    <div class="metric-label">Machine RPM</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value vibration" id="liveVibration">0</div>
+                    <div class="metric-label">Vibration</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value current" id="liveCurrent">0</div>
+                    <div class="metric-label">Current (A)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value runtime" id="liveRuntime">0</div>
+                    <div class="metric-label">Needle Runtime</div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="card">
+                    <h2>RPM Trend</h2>
+                    <div class="chart-placeholder">RPM Chart - Real-time Data Visualization</div>
+                </div>
+                <div class="card">
+                    <h2>Vibration Analysis</h2>
+                    <div class="chart-placeholder">Vibration Chart - Frequency Analysis</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Live IoT Data Stream</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Machine Serial</th>
+                            <th>RPM</th>
+                            <th>Vibration</th>
+                            <th>Current</th>
+                            <th>Runtime</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="iotDataTable">
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="footer">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© MAS KREEDA - FOF | 2025</span>
+    </div>
+
+    <script src="MBP_IoT_js.js"></script>
+</body>
+</html>
