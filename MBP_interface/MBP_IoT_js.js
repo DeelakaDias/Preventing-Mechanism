@@ -68,7 +68,7 @@ document.getElementById('machineForm').addEventListener('submit', function(e) {
         document.getElementById('machineAlert').innerHTML = '';
     }, 3000);
 });
-
+        
 // Downtime form submission
 document.getElementById('downtimeForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -81,9 +81,8 @@ document.getElementById('downtimeForm').addEventListener('submit', function(e) {
     const newRow = tbody.insertRow(0);
     newRow.innerHTML = `
         <td>${downtimeData.machineSerialNumber}</td>
-        <td>${new Date(downtimeData.dateTime).toLocaleString()}</td>
-        <td>${downtimeData.downTimeReasonCode}</td>
-        <td>${downtimeData.downtimeReasonDescription}</td>
+        <td>${new Date(downtimeData.Date).toLocaleString()}</td>
+        <td>${downtimeData.errorOccured}</td>
     `;
     
     // Show success message

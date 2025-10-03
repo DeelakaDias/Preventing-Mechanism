@@ -1,11 +1,10 @@
-// src/controllers/downTimeController.js
 const db = require("../models");
-const downTimeEntry = db.downTimeEntry
+const overviewController = db.overviewController
 
 // Get all records
 exports.getAllServices = async (req, res) => {
   try {
-    const services = await downTimeEntry.findAll();
+    const services = await overviewController.findAll();
     res.json(services);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -16,15 +15,17 @@ exports.getAllServices = async (req, res) => {
 exports.createService = async (req, res) => {
   try {
     const {
-      machineSerialNumber,
-      dateTime,
-      errorOccured
+      machineRPM,
+      machineVibration,
+      machineCurrent,
+      needleRuntime
     } = req.body; 
 
-    const newService = await downTimeEntry.create({
-      machineSerialNumber,
-      dateTime,
-      errorOccured
+    const newService = await overviewController.create({
+      machineRPM,
+      machineVibration,
+      machineCurrent,
+      needleRuntime
     });
 
     res.status(201).json({ message: "Record added successfully", data: newService });

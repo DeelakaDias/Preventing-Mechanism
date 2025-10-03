@@ -164,17 +164,18 @@
             <div class="card">
                 <h2>Downtime Entry</h2>
                 <div id="downtimeAlert"></div>
-                <form id="downtimeForm" action="http://localhost:5000/api/createErrors" method="POST">
+                <form id="downtimeForm" action="http://localhost:5000/api/abc/abc" method="POST">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="downtimeMachineSerial">Machine Serial Number</label>
                             <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
                         </div>
                         <div class="form-group">
-                            <label for="downTimeDateTime">Down Time Date & Time</label>
-                            <input type="datetime-local" id="downTimeDateTime" name="dateTime" required>
+                            <label for="downTimeDateTime">Breakdown Date</label>
+                            <input type="date" id="downTimeDateTime" name="dateTime" required>
                         </div>
-                        <div class="form-group">
+
+                        <!-- <div class="form-group">
                             <label for="downTimeReasonCode">Reason Code</label>
                             <select id="downTimeReasonCode" name="downTimeReasonCode" required>
                                 <option value="">Select Reason Code</option>
@@ -185,10 +186,10 @@
                                 <option value="QUA">Quality</option>
                                 <option value="MAI">Maintenance</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="downtimeReasonDescription">Reason Description</label>
-                            <textarea id="downtimeReasonDescription" name="downtimeReasonDescription" rows="4" required></textarea>
+                            <textarea id="errorOccured" name="errorOccured" rows="4" required></textarea>
                         </div>
                     </div>
                     <button type="submit" class="submit-btn">Record Downtime</button>
