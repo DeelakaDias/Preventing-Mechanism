@@ -8,5 +8,6 @@ db.sequelize = sequelize;
 
 // Load models
 db.MachineService = require("./MachineService")(sequelize, Sequelize);
+db.downTimeEntry = require("./downTimeEntry")(sequelize, Sequelize);
 
 module.exports = db;

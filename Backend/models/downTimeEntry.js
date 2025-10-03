@@ -1,9 +1,15 @@
 // backend/models/MachineService.js
 module.exports = (sequelize, DataTypes) => {
-  const MachineService = sequelize.define("MachineService", {
-    machineSerialNumber: {
+  const downTimeEntry = sequelize.define("downTimeEntry", {
+    Id: {
       type: DataTypes.STRING,
       primaryKey: true,
+      autoIncrement: true,
+      allowNull: true
+    },
+
+    machineSerialNumber: {
+      type: DataTypes.STRING,
       allowNull: false
     },
 
@@ -12,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     dateTime: {
-      type: DataTypes.dateTime,
+      type: DataTypes.DATE,
       allowNull: true
     },
 
@@ -22,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
 
-  return MachineService;
+  return downTimeEntry;
 };

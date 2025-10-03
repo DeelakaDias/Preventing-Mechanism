@@ -98,7 +98,7 @@
             <div class="card">
                 <h2>Machine Information Entry</h2>
                 <div id="machineAlert"></div>
-                <form id="machineForm" action="http://localhost:5000/api/machine-servicex" method="POST">
+                <form id="machineForm" action="http://localhost:5000/api/machine-service" method="POST">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="machineSerialNumber">Machine Serial Number</label>
@@ -164,7 +164,7 @@
             <div class="card">
                 <h2>Downtime Entry</h2>
                 <div id="downtimeAlert"></div>
-                <form id="downtimeForm">
+                <form id="downtimeForm" action="http://localhost:5000/api/createErrors" method="POST">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="downtimeMachineSerial">Machine Serial Number</label>
