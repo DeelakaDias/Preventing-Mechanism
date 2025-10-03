@@ -14,8 +14,10 @@ db.sequelize.sync()
 const machineServiceRoutes = require("./routes/machineServiceRoutes");
 const downTimeRoutes = require("./routes/downTimeRoutes");
 const overviewRoutes = require("./routes/overviewRoutes");
+const overviewMachineDataRoutes = require("./routes/overviewMachineDataRoutes");
 app.use("/api/machine-service", machineServiceRoutes);
 app.use("/api/abc", downTimeRoutes);
 app.use("/api/overview", overviewRoutes);
+app.use("/api/overviewMachineData", overviewMachineDataRoutes);
 
 module.exports = app;
