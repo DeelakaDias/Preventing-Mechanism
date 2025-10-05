@@ -47,7 +47,7 @@ function showTab(tabName) {
 }
 
 // Machine form submission
-document.getElementById('machineForm').addEventListener('submit', function(e) {
+document.getElementById('machineForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
@@ -55,114 +55,105 @@ document.getElementById('machineForm').addEventListener('submit', function(e) {
     
     // Add timestamp
     machineData.dateTime = new Date().toISOString();
-    
-    // Show success message
-    document.getElementById('machineAlert').innerHTML = 
-        '<div class="alert alert-success">Machine information added successfully!</div>';
-    
-    // Reset form
-    e.target.reset();
-    
+
+    try {
+        const response = await fetch("http://localhost:5000/api/machine-service", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(machineData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            document.getElementById('machineAlert').innerHTML = 
+                `<div class="alert alert-success">${result.message || "Machine information added successfully!"}</div>`;
+            e.target.reset();
+        } else {
+            document.getElementById('machineAlert').innerHTML = 
+                `<div class="alert alert-danger">Error: ${result.error || "Failed to add machine"}</div>`;
+        }
+    } catch (err) {
+        document.getElementById('machineAlert').innerHTML = 
+            `<div class="alert alert-danger">Network error: ${err.message}</div>`;
+    }
+
     // Clear alert after 3 seconds
     setTimeout(() => {
         document.getElementById('machineAlert').innerHTML = '';
     }, 3000);
 });
+
         
 // Downtime form submission
-document.getElementById('downtimeForm').addEventListener('submit', function(e) {
+document.getElementById('downtimeForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
     const downtimeData = Object.fromEntries(formData.entries());
-    
-    // Add to downtime table
-    const tbody = document.getElementById('downtimeTable');
-    const newRow = tbody.insertRow(0);
-    newRow.innerHTML = `
-        <td>${downtimeData.machineSerialNumber}</td>
-        <td>${new Date(downtimeData.Date).toLocaleString()}</td>
-        <td>${downtimeData.errorOccured}</td>
-    `;
-    
-    // Show success message
-    document.getElementById('downtimeAlert').innerHTML = 
-        '<div class="alert alert-success">Downtime record added successfully!</div>';
-    
-    // Reset form
-    e.target.reset();
-    
+
+    try {
+        const response = await fetch("http://localhost:5000/api/downTimeRoutes/postDownTimeRoutes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(downtimeData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // Add new row to table
+            const tbody = document.getElementById('downtimeTable');
+            const newRow = tbody.insertRow(0);
+            newRow.innerHTML = `
+                <td>${downtimeData.machineSerialNumber}</td>
+                <td>${new Date(downtimeData.dateTime).toLocaleString()}</td>
+                <td>${downtimeData.errorOccured}</td>
+                <td>—</td> <!-- optional if you later want a reason code column -->
+            `;
+
+            document.getElementById('downtimeAlert').innerHTML = 
+                `<div class="alert alert-success">${result.message || "Downtime record added successfully!"}</div>`;
+            
+            e.target.reset();
+        } else {
+            document.getElementById('downtimeAlert').innerHTML = 
+                `<div class="alert alert-danger">Error: ${result.error || "Failed to record downtime"}</div>`;
+        }
+    } catch (err) {
+        document.getElementById('downtimeAlert').innerHTML = 
+            `<div class="alert alert-danger">Network error: ${err.message}</div>`;
+    }
+
     // Clear alert after 3 seconds
     setTimeout(() => {
         document.getElementById('downtimeAlert').innerHTML = '';
     }, 3000);
 });
 
-// IoT data simulation
-// const machines = ['MSN001', 'MSN002', 'MSN003', 'MSN004'];
-// let iotDataCounter = 0;
+// Fetch and populate downtime records
+async function loadDowntimeRecords() {
+    try {
+        const response = await fetch("http://localhost:5000/api/downTimeRoutes/getDownTimeRoutes");
+        const data = await response.json();
 
-// function generateIoTData() {
-//     const machine = machines[Math.floor(Math.random() * machines.length)];
-//     const rpm = Math.floor(Math.random() * 300) + 700; // 700-1000 RPM
-//     const vibration = (Math.random() * 5 + 1).toFixed(1); // 1-6 vibration
-//     const current = (Math.random() * 10 + 10).toFixed(1); // 10-20 A
-//     const runtime = Math.floor(Math.random() * 500) + 100; // 100-600 hours
-    
-//     return {
-//         machineSerialNumber: machine,
-//         machineRPM: rpm,
-//         machineVibration: vibration,
-//         current: current,
-//         needleRuntime: runtime,
-//         dateTime: new Date().toISOString()
-//     };
-// }
+        const tbody = document.getElementById("downtimeTable");
+        tbody.innerHTML = ""; // clear old static rows
 
-// function updateLiveMetrics() {
-//     const data = generateIoTData();
-//     document.getElementById('liveRPM').textContent = data.machineRPM;
-//     document.getElementById('liveVibration').textContent = data.machineVibration;
-//     document.getElementById('liveCurrent').textContent = data.current;
-//     document.getElementById('liveRuntime').textContent = data.needleRuntime;
-// }
+        data.forEach(record => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${record.machineSerialNumber}</td>
+                <td>${new Date(record.dateTime).toLocaleDateString()}</td>
+                <td>${record.errorOccured}</td>
+            `;
+            tbody.appendChild(row);
+        });
 
-// function addIoTDataRow() {
-//     const data = generateIoTData();
-//     const tbody = document.getElementById('iotDataTable');
-    
-//     // Add new row at the top
-//     const newRow = tbody.insertRow(0);
-//     newRow.innerHTML = `
-//         <td>${data.machineSerialNumber}</td>
-//         <td>${data.machineRPM}</td>
-//         <td>${data.machineVibration}</td>
-//         <td>${data.current}</td>
-//         <td>${data.needleRuntime}</td>
-//         <td>${new Date(data.dateTime).toLocaleString()}</td>
-//     `;
-    
-//     // Keep only last 10 rows
-//     while (tbody.rows.length > 10) {
-//         tbody.deleteRow(-1);
-//     }
-    
-//     iotDataCounter++;
-// }
+    } catch (error) {
+        console.error("Error loading downtime records:", error);
+    }
+}
 
-// // Initialize DOM content when loaded
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Initialize with some dummy IoT data
-//     for (let i = 0; i < 5; i++) {
-//         addIoTDataRow();
-//     }
-
-//     // Update live metrics every 2 seconds
-//     setInterval(updateLiveMetrics, 2000);
-
-//     // Add new IoT data every 5 seconds
-//     setInterval(addIoTDataRow, 5000);
-
-//     // Initial metric update
-//     updateLiveMetrics();
-// });
+// Call it when page loads
+document.addEventListener("DOMContentLoaded", loadDowntimeRecords);

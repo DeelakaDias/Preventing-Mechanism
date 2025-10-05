@@ -1,6 +1,6 @@
 // src/controllers/downTimeController.js
 const db = require("../models");
-const overviewMachineData = db.overviewMachineData
+const overviewMachineData = db.overviewMachineDataModel
 
 // Get all records
 exports.getAllServices = async (req, res) => {

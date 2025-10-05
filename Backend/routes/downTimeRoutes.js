@@ -7,9 +7,9 @@ const {
 } = require("../controllers/downTimeController");
 
 // GET all service records
-router.get("/efg", getAllServices);
+router.get("/getDownTimeRoutes", getAllServices);
 
 // POST a new service record (form submission)
-router.post("/abc", createService);
+router.post("/postDownTimeRoutes", createService);
 
 module.exports = router;

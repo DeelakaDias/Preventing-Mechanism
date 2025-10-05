@@ -10,7 +10,6 @@ db.sequelize = sequelize;
 db.MachineService = require("./MachineService")(sequelize, Sequelize);
 db.downTimeEntry = require("./downTimeEntry")(sequelize, Sequelize);
 db.overviewModel = require("./overviewModel")(sequelize, Sequelize);
-db.overviewMachineData = require("./overviewModel")(sequelize, Sequelize);
-db.overviewMachineData = require("./overviewMachineDataModel")(sequelize, Sequelize);
+db.overviewMachineDataModel = require("./overviewMachineDataModel")(sequelize, Sequelize);
 
 module.exports = db;

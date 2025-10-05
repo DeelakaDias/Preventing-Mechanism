@@ -6,9 +6,9 @@ const {
 } = require("../controllers/overviewController");
 
 // GET all service records
-router.get("/get2", getAllServices);
+router.get("/getOverview", getAllServices);
 
 // POST a new service record (form submission)
-router.post("/post2", createService);
+router.post("/postOverview", createService);
 
 module.exports = router;

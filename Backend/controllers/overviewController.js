@@ -1,5 +1,5 @@
 const db = require("../models");
-const overviewController = db.overviewController
+const overviewController = db.overviewModel
 
 // Get all records
 exports.getAllServices = async (req, res) => {
