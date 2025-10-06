@@ -98,7 +98,7 @@
 
 
         <!-- Downtime Entry Tab -->
-        <div id="downtime-entry" class="tab-content active"></div>
+        <div id="downtime-entry" class="tab-content active">
             <div class="card">
                 <h2>Downtime Entry</h2>
                 <div id="downtimeAlert"></div>
@@ -120,82 +120,9 @@
                     <button type="submit" class="submit-btn">Record Downtime</button>
                 </form>
             </div>
-
-            <div class="card">
-                <h2>Recent Downtime Records</h2>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Machine Serial</th>
-                            <th>Date & Time</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody id="downtimeTable">
-                        <tr>
-                            <td>MSN001</td>
-                            <td>2025-09-18 10:30</td>
-                            <td>Belt replacement required</td>
-                        </tr>
-                        <tr>
-                            <td>MSN003</td>
-                            <td>2025-09-18 09:15</td>
-                            <td>Motor overheating</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        </div>
-
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value rpm" id="liveRPM">0</div>
-                    <div class="metric-label">Machine RPM</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value vibration" id="liveVibration">0</div>
-                    <div class="metric-label">Vibration</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value current" id="liveCurrent">0</div>
-                    <div class="metric-label">Current (A)</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value runtime" id="liveRuntime">0</div>
-                    <div class="metric-label">Needle Runtime</div>
-                </div>
-            </div>
-
-            <div class="charts-container">
-                <div class="card">
-                    <h2>RPM Trend</h2>
-                    <div class="chart-placeholder">RPM Chart - Real-time Data Visualization</div>
-                </div>
-                <div class="card">
-                    <h2>Vibration Analysis</h2>
-                    <div class="chart-placeholder">Vibration Chart - Frequency Analysis</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Live IoT Data Stream</h2>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Machine Serial</th>
-                            <th>RPM</th>
-                            <th>Vibration</th>
-                            <th>Current</th>
-                            <th>Runtime</th>
-                            <th>Timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody id="iotDataTable">
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
     </div>
+
 
     <div class="footer">
         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© MAS KREEDA - FOF | 2025</span>
