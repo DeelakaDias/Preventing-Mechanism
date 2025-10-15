@@ -357,14 +357,17 @@ body {
   display: inline-block;     /* Keeps it neat */
 }
 
+
+
 /* Secondary Button Style */
 .secondary-btn {
-    background: white;
+    background: #8fa4fa;
     color: #667eea;
     padding: 15px 40px;
     border: 2px solid #667eea;
     border-radius: 25px;
     font-size: 16px;
+    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
