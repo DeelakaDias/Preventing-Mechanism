@@ -1,16 +1,20 @@
 // Dummy controller data
 const dummyControllerData = [
     { Id: 1, machineSerialNumber: 'MSN001', machineRPM: 850, machineVibration: 2.3, machineCurrent: 15.2, needleRuntime: 247 },
-    { Id: 2, machineSerialNumber: 'MSN002', machineRPM: 920, machineVibration: 1.8, machineCurrent: 14.5, needleRuntime: 300 },
-    { Id: 3, machineSerialNumber: 'MSN003', machineRPM: 1500, machineVibration: 3.5, machineCurrent: 12.5, needleRuntime: 500 },
-    { Id: 4, machineSerialNumber: 'MSN004', machineRPM: 1200, machineVibration: 2.0, machineCurrent: 14.0, needleRuntime: 300 },
+    { Id: 2, machineSerialNumber: 'MSN002', machineRPM: 854, machineVibration: 1.8, machineCurrent: 14.5, needleRuntime: 300 },
+    { Id: 3, machineSerialNumber: 'MSN003', machineRPM: 859, machineVibration: 3.5, machineCurrent: 12.5, needleRuntime: 500 },
+    { Id: 4, machineSerialNumber: 'MSN004', machineRPM: 799, machineVibration: 2.0, machineCurrent: 14.0, needleRuntime: 300 },
     { Id: 5, machineSerialNumber: 'MSN001', machineRPM: 870, machineVibration: 2.5, machineCurrent: 15.5, needleRuntime: 260 },
     { Id: 6, machineSerialNumber: 'MSN002', machineRPM: 940, machineVibration: 1.9, machineCurrent: 14.7, needleRuntime: 320 },
-    { Id: 7, machineSerialNumber: 'MSN003', machineRPM: 1480, machineVibration: 3.3, machineCurrent: 12.3, needleRuntime: 480 },
-    { Id: 8, machineSerialNumber: 'MSN004', machineRPM: 1220, machineVibration: 2.1, machineCurrent: 14.2, needleRuntime: 310 },
-    { Id: 9, machineSerialNumber: 'MSN001', machineRPM: 860, machineVibration: 2.4, machineCurrent: 15.3, needleRuntime: 255 },
+
+    // 🚨 Anomaly row (Id: 7)
+    { Id: 7, machineSerialNumber: 'MSN003', machineRPM: 420, machineVibration: 9.4, machineCurrent: 30.2, needleRuntime: 150 },
+
+    { Id: 8, machineSerialNumber: 'MSN004', machineRPM: 945, machineVibration: 2.1, machineCurrent: 14.2, needleRuntime: 310 },
+    { Id: 9, machineSerialNumber: 'MSN001', machineRPM: 900, machineVibration: 2.4, machineCurrent: 15.3, needleRuntime: 255 },
     { Id: 10, machineSerialNumber: 'MSN002', machineRPM: 930, machineVibration: 1.85, machineCurrent: 14.6, needleRuntime: 310 }
 ];
+
 
 // Navigate back to dashboard (preserve downtime entry state)
 function goBackToDashboard() {
