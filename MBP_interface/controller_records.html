@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="mas-holdings-logo-png.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controller Records - MBP Dashboard</title>
+    <link rel="stylesheet" href="MBP_IoT_css.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Controller Records</h1>
+            <h4>Real-time monitoring and data management system</h4>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <button class="secondary-btn" onclick="window.location.href='MBP_IoT_dashboard.html'">
+                ⬅️ Back
+            </button>
+        </div>
+
+        <!-- RPM Graph -->
+        <div class="card">
+            <h2>Machine RPM</h2>
+            <div class="chart-container">
+                <canvas id="rpmChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Vibration Graph -->
+        <div class="card">
+            <h2>Machine Vibration</h2>
+            <div class="chart-container">
+                <canvas id="vibrationChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Current Graph -->
+        <div class="card">
+            <h2>Machine Current</h2>
+            <div class="chart-container">
+                <canvas id="currentChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© MAS KREEDA - FOF | 2025</span>
+    </div>
+
+    <script src="controller_records.js"></script>
+</body>
+</html>

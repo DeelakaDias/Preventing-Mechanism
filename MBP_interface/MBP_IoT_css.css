@@ -356,3 +356,62 @@ body {
   font-weight: bold;         /* Make text bold */
   display: inline-block;     /* Keeps it neat */
 }
+
+/* Secondary Button Style */
+.secondary-btn {
+    background: white;
+    color: #667eea;
+    padding: 15px 40px;
+    border: 2px solid #667eea;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.secondary-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+/* Responsive canvas */
+.chart-container canvas {
+    max-height: 400px;
+}
+
+/* Button Container for multiple buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .secondary-btn,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+}

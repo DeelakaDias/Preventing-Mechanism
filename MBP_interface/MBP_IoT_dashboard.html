@@ -113,16 +113,34 @@
                             <input type="date" id="downTimeDateTime" name="dateTime" required>
                         </div>
                         <div class="form-group">
+                            <label for="controllerRecordId">Controller Record ID</label>
+                            <select id="controllerRecordId" name="controllerRecordId" required>
+                                <option value="">Select Controller Record</option>
+                                <option value="1">ID: 1 - MSN001 (RPM: 850)</option>
+                                <option value="2">ID: 2 - MSN002 (RPM: 920)</option>
+                                <option value="3">ID: 3 - MSN003 (RPM: 1500)</option>
+                                <option value="4">ID: 4 - MSN004 (RPM: 1200)</option>
+                                <option value="5">ID: 5 - MSN001 (RPM: 870)</option>
+                                <option value="6">ID: 6 - MSN002 (RPM: 940)</option>
+                                <option value="7">ID: 7 - MSN003 (RPM: 1480)</option>
+                                <option value="8">ID: 8 - MSN004 (RPM: 1220)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="downtimeReasonDescription">Reason Description</label>
                             <textarea id="errorOccured" name="errorOccured" rows="4" required></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">Record Downtime</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <button type="submit" class="submit-btn">Record Downtime</button>
+                        <button type="button" class="secondary-btn" onclick="window.location.href='controller_records.html'">
+                            Controller Records
+                        </button>
+                    </div>
                 </form>
             </div>
             </div>
     </div>
-
 
     <div class="footer">
         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© MAS KREEDA - FOF | 2025</span>

@@ -163,3 +163,243 @@ async function loadDowntimeRecords() {
 
 // Call it when page loads
 document.addEventListener("DOMContentLoaded", loadDowntimeRecords);
+
+// Dummy data for testing
+let dummyDowntimeRecords = [
+    {
+        machineSerialNumber: 'MSN001',
+        dateTime: '2025-01-10',
+        controllerRecordId: 3,
+        errorOccured: 'Belt replacement required'
+    },
+    {
+        machineSerialNumber: 'MSN003',
+        dateTime: '2025-01-09',
+        controllerRecordId: 7,
+        errorOccured: 'Motor overheating'
+    },
+    {
+        machineSerialNumber: 'MSN002',
+        dateTime: '2025-01-08',
+        controllerRecordId: 2,
+        errorOccured: 'Needle broke during operation'
+    }
+];
+
+// Tab switching functionality
+function showTab(tabName) {
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => tab.classList.remove('active'));
+
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabName).classList.add('active');
+    
+    // Find and activate the corresponding button
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(tabName.replace('-', ' '))) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Save active tab to localStorage
+    localStorage.setItem('activeTab', tabName);
+}
+
+// Save form data to localStorage
+function saveDowntimeFormData() {
+    const machineSerial = document.getElementById('downtimeMachineSerial');
+    const dateTime = document.getElementById('downTimeDateTime');
+    const controllerId = document.getElementById('controllerRecordId');
+    const errorDesc = document.getElementById('errorOccured');
+    
+    if (machineSerial && dateTime && controllerId && errorDesc) {
+        const formData = {
+            machineSerialNumber: machineSerial.value,
+            dateTime: dateTime.value,
+            controllerRecordId: controllerId.value,
+            errorOccured: errorDesc.value
+        };
+        localStorage.setItem('downtimeFormData', JSON.stringify(formData));
+        console.log('Form data saved:', formData);
+    }
+}
+
+// Restore form data from localStorage
+function restoreDowntimeFormData() {
+    const savedData = localStorage.getItem('downtimeFormData');
+    console.log('Restoring form data:', savedData);
+    
+    if (savedData) {
+        try {
+            const formData = JSON.parse(savedData);
+            
+            const machineSerial = document.getElementById('downtimeMachineSerial');
+            const dateTime = document.getElementById('downTimeDateTime');
+            const controllerId = document.getElementById('controllerRecordId');
+            const errorDesc = document.getElementById('errorOccured');
+            
+            if (machineSerial) machineSerial.value = formData.machineSerialNumber || '';
+            if (dateTime) dateTime.value = formData.dateTime || '';
+            if (controllerId) controllerId.value = formData.controllerRecordId || '';
+            if (errorDesc) errorDesc.value = formData.errorOccured || '';
+            
+            console.log('Form data restored successfully');
+        } catch (e) {
+            console.error('Error restoring form data:', e);
+        }
+    }
+}
+
+// Clear form data from localStorage
+function clearDowntimeFormData() {
+    localStorage.removeItem('downtimeFormData');
+    console.log('Form data cleared');
+}
+
+// Navigate to Controller Records page
+function goToControllerRecords() {
+    // Save form data before leaving
+    saveDowntimeFormData();
+    // Save that we're coming from downtime entry
+    localStorage.setItem('activeTab', 'downtime-entry');
+    // Navigate to controller records page
+    window.location.href = 'controller_records.html';
+}
+
+// Add event listeners to save form data on input change
+function addDowntimeFormAutoSave() {
+    const form = document.getElementById('downtimeForm');
+    if (form) {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('change', saveDowntimeFormData);
+            input.addEventListener('input', saveDowntimeFormData);
+            input.addEventListener('blur', saveDowntimeFormData);
+        });
+        console.log('Auto-save listeners added to', inputs.length, 'inputs');
+    }
+}
+
+// Machine form submission (with dummy data)
+if (document.getElementById('machineForm')) {
+    document.getElementById('machineForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const machineData = Object.fromEntries(formData.entries());
+        
+        console.log('Machine Data Submitted:', machineData);
+
+        document.getElementById("machineAlert").innerHTML =
+            '<div class="alert alert-success">Machine information added successfully! (Dummy mode)</div>';
+        
+        form.reset();
+
+        setTimeout(() => {
+            document.getElementById("machineAlert").innerHTML = "";
+        }, 3000);
+    });
+}
+
+// Downtime form submission (with dummy data)
+if (document.getElementById('downtimeForm')) {
+    document.getElementById('downtimeForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const downtimeData = Object.fromEntries(formData.entries());
+        
+        console.log('Downtime Data Submitted:', downtimeData);
+
+        // Add to dummy data array
+        dummyDowntimeRecords.unshift({
+            machineSerialNumber: downtimeData.machineSerialNumber,
+            dateTime: downtimeData.dateTime,
+            controllerRecordId: parseInt(downtimeData.controllerRecordId),
+            errorOccured: downtimeData.errorOccured
+        });
+
+        // Save to localStorage
+        localStorage.setItem('dummyDowntimeRecords', JSON.stringify(dummyDowntimeRecords));
+
+        // Reload the table
+        loadDowntimeRecords();
+
+        document.getElementById("downtimeAlert").innerHTML =
+            '<div class="alert alert-success">Downtime record added successfully!</div>';
+        
+        // Clear form and localStorage ONLY after successful submission
+        form.reset();
+        clearDowntimeFormData();
+
+        setTimeout(() => {
+            document.getElementById("downtimeAlert").innerHTML = "";
+        }, 3000);
+    });
+}
+
+// Load downtime records from localStorage or dummy data
+function loadDowntimeRecords() {
+    const tbody = document.getElementById("downtimeTable");
+    if (!tbody) return;
+    
+    // Load from localStorage if available
+    const savedRecords = localStorage.getItem('dummyDowntimeRecords');
+    if (savedRecords) {
+        dummyDowntimeRecords = JSON.parse(savedRecords);
+    }
+    
+    tbody.innerHTML = "";
+
+    if (dummyDowntimeRecords.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No downtime records</td></tr>';
+        return;
+    }
+
+    dummyDowntimeRecords.forEach(record => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${record.machineSerialNumber}</td>
+            <td>${record.dateTime}</td>
+            <td>${record.controllerRecordId}</td>
+            <td>${record.errorOccured}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", function() {
+    console.log('Page loaded, initializing...');
+    
+    // Load downtime records
+    loadDowntimeRecords();
+    
+    // Check if we should show the downtime entry tab (default or coming back from controller records)
+    const activeTab = localStorage.getItem('activeTab');
+    console.log('Active tab from storage:', activeTab);
+    
+    if (activeTab === 'downtime-entry') {
+        // Show downtime entry tab
+        showTab('downtime-entry');
+        // Restore form data after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            restoreDowntimeFormData();
+        }, 100);
+    } else if (activeTab === 'machine-entry') {
+        showTab('machine-entry');
+    } else {
+        // Default to machine-entry tab on first load
+        showTab('machine-entry');
+    }
+    
+    // Add auto-save functionality to downtime form
+    addDowntimeFormAutoSave();
+    
+    console.log('Initialization complete');
+});
