@@ -30,14 +30,13 @@ body {
 }
 
 #machineStatusTable tr.selected {
-    background-color: #6c8ed1; /* lighter, soft blue */
+    background-color: #6c8ed1;
     color: white;
 }
 
 #machineStatusTable tr:hover:not(.selected) {
-    background-color: #dbe5f6; /* very light blue for hover */
+    background-color: #dbe5f6;
 }
-
 
 .dashboard-tabs {
     display: flex;
@@ -45,8 +44,8 @@ body {
     margin-bottom: 30px;
     padding: 5px;
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.15); /* translucent base */
-    backdrop-filter: blur(20px) saturate(180%); /* liquid glass effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -56,7 +55,7 @@ body {
 .tab-button {
     padding: 12px 30px;
     border: none;
-    background: rgba(255, 255, 255, 0.2); /* semi-transparent button */
+    background: rgba(255, 255, 255, 0.2);
     color: white;
     cursor: pointer;
     border-radius: 25px;
@@ -68,41 +67,13 @@ body {
 }
 
 .tab-button:hover {
-    background: rgba(255, 255, 255, 0.35); /* brighter hover */
+    background: rgba(255, 255, 255, 0.35);
     color: #333;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .tab-button.active {
     background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-
-.dashboard-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50px;
-    padding: 5px;
-    backdrop-filter: blur(10px);
-}
-
-.tab-button {
-    padding: 12px 30px;
-    border: none;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.tab-button.active {
-    background: rgba(255,255,255,0.9);
     color: #333;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -271,36 +242,6 @@ body {
 .status-down { background-color: #f44336; }
 .status-idle { background-color: #9E9E9E; }
 
-/* .charts-container {
-    display: grid;  
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-}
-
-.chart-placeholder {
-    height: 300px;
-    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    font-weight: bold;
-    position: relative;
-    overflow: hidden;
-}
-
-.chart-placeholder::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: shimmer 2s infinite;
-} */
-
 @keyframes shimmer {
     0% { left: -100%; }
     100% { left: 100%; }
@@ -325,49 +266,31 @@ body {
     border: 1px solid #ffeaa7;
 }
 
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .charts-container {
-        grid-template-columns: 1fr;
-    }
-}
-
 .footer {
-  background-color: #ffffff; /* White background */
-  padding: 6px 15px;        /* Space inside footer */
-  border-top: 1px solid #ddd; /* Subtle top border */
-  position: fixed;           /* Stick to bottom */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;        /* Center align content */
+    background-color: #ffffff;
+    padding: 6px 15px;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .footer span {
-  color: #000000;            /* Black text */
-  font-size: 14px;
-  font-weight: bold;         /* Make text bold */
-  display: inline-block;     /* Keeps it neat */
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
 }
 
-
-
-/* Secondary Button Style */
 .secondary-btn {
     background: #758bf0;
-    color: #667eea;
+    color: #ffffff;
     padding: 15px 40px;
     border: 2px solid #667eea;
     border-radius: 25px;
     font-size: 16px;
-    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -381,7 +304,6 @@ body {
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
-/* Chart Container */
 .chart-container {
     position: relative;
     height: 400px;
@@ -389,12 +311,10 @@ body {
     padding: 20px;
 }
 
-/* Responsive canvas */
 .chart-container canvas {
     max-height: 400px;
 }
 
-/* Button Container for multiple buttons */
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -403,7 +323,96 @@ body {
     gap: 15px;
 }
 
+/* ===== NEW STYLES FOR SINGLE ROW LAYOUT ===== */
+
+/* Downtime Form Row Layout - All fields in one row */
+.downtime-form-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Field size variations */
+.form-field-large {
+    flex: 2.5;
+    min-width: 250px;
+}
+
+.form-field-button {
+    flex: 1.2;
+    min-width: 140px;
+}
+
+.form-field-small {
+    flex: 1.5;
+    min-width: 160px;
+}
+
+.form-field-medium {
+    flex: 2;
+    min-width: 200px;
+}
+
+/* Fetch Records Button - Optimized for row layout */
+.fetch-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fetch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #7c8ff5, #8659ad);
+}
+
+.fetch-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1200px) {
+    .downtime-form-row {
+        flex-wrap: wrap;
+    }
+    
+    .form-field-large,
+    .form-field-button,
+    .form-field-small,
+    .form-field-medium {
+        flex: 1 1 45%;
+        min-width: 250px;
+    }
+}
+
 @media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+    
     .button-container {
         flex-direction: column;
         align-items: stretch;
@@ -417,36 +426,20 @@ body {
     .chart-container {
         height: 300px;
     }
-}
-
-
-
-/* Fetch Records Button Style - Compact and aligned */
-.fetch-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    width: 30%;
-    height: 42px;
-    display: flex;                /* ✅ Enables flexbox */
-    align-items: center;          /* ✅ Vertical center */
-    justify-content: center;      /* ✅ Horizontal center */
-}
-
-.fetch-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    background: linear-gradient(135deg, #7c8ff5, #8659ad);
-}
-
-.fetch-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    
+    .downtime-form-row {
+        flex-direction: column;
+    }
+    
+    .form-field-large,
+    .form-field-button,
+    .form-field-small,
+    .form-field-medium {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+    
+    .fetch-btn {
+        width: 100%;
+    }
 }
