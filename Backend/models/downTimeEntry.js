@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
 
+    MBP_Controller_ID: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    
 
   }, {
     tableName: "MBP_ErrorLogger",

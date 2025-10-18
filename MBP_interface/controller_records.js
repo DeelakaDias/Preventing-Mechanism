@@ -27,23 +27,30 @@ function goBackToDashboard() {
 
 // Load controller data and render charts
 function loadControllerData() {
-    const data = dummyControllerData;
+  // Check if data was stored from Downtime Entry
+  const storedData = localStorage.getItem("controllerRecords");
+  let data = [];
 
-    // Extract data for charts
-    const ids = data.map(record => record.Id);
-    const rpms = data.map(record => record.machineRPM);
-    const vibrations = data.map(record => record.machineVibration);
-    const currents = data.map(record => record.machineCurrent);
+  if (storedData) {
+    console.log("Loaded real controller data from localStorage.");
+    data = JSON.parse(storedData);
+  } else {
+    console.warn("No stored data found — using dummy controller data.");
+    data = dummyControllerData;
+  }
 
-    // Create RPM Chart
-    createChart('rpmChart', 'Machine RPM', ids, rpms, 'rgba(76, 175, 80, 0.6)', 'rgba(76, 175, 80, 1)');
+  // Extract data for charts
+  const ids = data.map(record => record.Id);
+  const rpms = data.map(record => record.machineRPM);
+  const vibrations = data.map(record => record.machineVibration);
+  const currents = data.map(record => record.machineCurrent);
 
-    // Create Vibration Chart
-    createChart('vibrationChart', 'Machine Vibration', ids, vibrations, 'rgba(255, 152, 0, 0.6)', 'rgba(255, 152, 0, 1)');
-
-    // Create Current Chart
-    createChart('currentChart', 'Machine Current (A)', ids, currents, 'rgba(33, 150, 243, 0.6)', 'rgba(33, 150, 243, 1)');
+  // Create charts
+  createChart("rpmChart", "Machine RPM", ids, rpms, "rgba(76, 175, 80, 0.6)", "rgba(76, 175, 80, 1)");
+  createChart("vibrationChart", "Machine Vibration", ids, vibrations, "rgba(255, 152, 0, 0.6)", "rgba(255, 152, 0, 1)");
+  createChart("currentChart", "Machine Current", ids, currents, "rgba(33, 150, 243, 0.6)", "rgba(33, 150, 243, 1)");
 }
+
 
 // Create chart function
 function createChart(canvasId, label, xData, yData, backgroundColor, borderColor) {

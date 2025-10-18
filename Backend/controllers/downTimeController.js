@@ -18,13 +18,15 @@ exports.createService = async (req, res) => {
     const {
       machineSerialNumber,
       dateTime,
-      errorOccured
+      errorOccured,
+      MBP_Controller_ID
     } = req.body; 
 
     const newService = await downTimeEntry.create({
       machineSerialNumber,
       dateTime,
-      errorOccured
+      errorOccured,
+      MBP_Controller_ID
     });
 
     res.status(201).json({ message: "Record added successfully", data: newService });

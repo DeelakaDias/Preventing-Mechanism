@@ -7,23 +7,31 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     machineSerialNumber: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     machineRPM: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
     machineVibration: {
-      type: DataTypes.FLOAT,
-      allowNull: true
+      type: DataTypes.STRING(1000),
+      allowNull: false
     },
     machineCurrent: {
-      type: DataTypes.FLOAT,
-      allowNull: true
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
     },
     needleRuntime: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    },
+    dateTime: {
+      type: DataTypes.DATE, // Sequelize will handle datetime2 as DATE
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {

@@ -108,15 +108,26 @@
                             <label for="downtimeMachineSerial">Machine Serial Number</label>
                             <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
                         </div>
+
+
+                        <div class="form-group">
+                            <label for="downtimeMachineSerial">Machine Serial Number</label>
+                            <div style="display: flex; gap: 10px;">
+                                <!-- <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required> -->
+                                <button type="button" id="fetchRecordsBtn" class="secondary-btn">Fetch Records</button>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="downTimeDateTime">Breakdown Date</label>
                             <input type="date" id="downTimeDateTime" name="dateTime" required>
                         </div>
                         <div class="form-group">
                             <label for="controllerRecordId">Controller Record ID</label>
-                            <select id="controllerRecordId" name="controllerRecordId" required>
+                            <select id="controllerRecordId" name="MBP_Controller_ID" required>
                                 <option value="">Select Controller Record</option>
-                                <option value="1">ID: 1</option>
+                                <!-- <option value="1">ID: 1</option>
                                 <option value="2">ID: 2</option>
                                 <option value="3">ID: 3</option>
                                 <option value="4">ID: 4</option>
@@ -125,7 +136,7 @@
                                 <option value="7">ID: 7</option>
                                 <option value="8">ID: 8</option>
                                 <option value="9">ID: 9</option>
-                                <option value="10">ID: 10</option>  
+                                <option value="10">ID: 10</option>   -->
                             </select>
                         </div>
                         <div class="form-group">

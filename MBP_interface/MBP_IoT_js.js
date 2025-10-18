@@ -403,3 +403,51 @@ document.addEventListener("DOMContentLoaded", function() {
     
     console.log('Initialization complete');
 });
+
+
+document.getElementById("fetchRecordsBtn").addEventListener("click", async () => {
+  const serialNumberInput = document.getElementById("downtimeMachineSerial");
+  const dropdown = document.getElementById("controllerRecordId");
+  const machineSerial = serialNumberInput.value.trim();
+
+  if (!machineSerial) {
+    alert("Please enter a Machine Serial Number first.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:5000/api/overview/getLatest/${machineSerial}`);
+    if (!response.ok) throw new Error("Failed to fetch records");
+
+    const records = await response.json();
+
+    // Reset dropdown
+    dropdown.innerHTML = `<option value="">Select Controller Record</option>`;
+
+    if (records.length === 0) {
+      const option = document.createElement("option");
+      option.textContent = "No records found";
+      option.disabled = true;
+      dropdown.appendChild(option);
+      return;
+    }
+
+    // Populate dropdown with IDs
+    records.forEach(record => {
+      const option = document.createElement("option");
+      option.value = record.Id;
+      option.textContent = `ID: ${record.Id}`;
+      dropdown.appendChild(option);
+    });
+
+    // ✅ Store records in localStorage for graph page
+    localStorage.setItem("controllerRecords", JSON.stringify(records));
+    console.log("Stored last 10 records in localStorage:", records);
+
+    alert("Records fetched successfully! You can now view them in Controller Records.");
+
+  } catch (err) {
+    console.error(err);
+    alert("Error fetching records. Check console for details.");
+  }
+});

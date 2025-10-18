@@ -33,3 +33,24 @@ exports.createService = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+// Get last 10 records for a specific machineSerialNumber
+exports.getLatestRecordsByMachine = async (req, res) => {
+  try {
+    const { machineSerialNumber } = req.params;
+
+    if (!machineSerialNumber) {
+      return res.status(400).json({ error: "machineSerialNumber is required" });
+    }
+
+    const records = await overviewController.findAll({
+      where: { machineSerialNumber },
+      order: [["dateTime", "DESC"]], // latest first
+      limit: 10 // get only last 10
+    });
+
+    res.status(200).json(records);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
