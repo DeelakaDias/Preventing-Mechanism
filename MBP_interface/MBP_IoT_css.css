@@ -38,7 +38,7 @@ body {
     background-color: #dbe5f6; /* very light blue for hover */
 }
 
----------- Top Navigation Buttons (Liquid Glass) ----------
+
 .dashboard-tabs {
     display: flex;
     justify-content: center;
@@ -417,4 +417,36 @@ body {
     .chart-container {
         height: 300px;
     }
+}
+
+
+
+/* Fetch Records Button Style - Compact and aligned */
+.fetch-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: 30%;
+    height: 42px;
+    display: flex;                /* ✅ Enables flexbox */
+    align-items: center;          /* ✅ Vertical center */
+    justify-content: center;      /* ✅ Horizontal center */
+}
+
+.fetch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #7c8ff5, #8659ad);
+}
+
+.fetch-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
