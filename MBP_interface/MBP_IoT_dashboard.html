@@ -94,51 +94,51 @@
                 <button type="submit" class="submit-btn">Add Machine</button>
                 </form>
             </div>
-            </div>
+        </div>
             <!-- Downtime Entry Tab -->
 
-            <div id="downtime-entry" class="tab-content active">
-                <div class="card">
-                    <h2>Downtime Entry</h2>
-                    <div id="downtimeAlert"></div>
-                    <form id="downtimeForm" action="http://localhost:5000/api/downTimeRoutes/postDownTimeRoutes" method="POST">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="downtimeMachineSerial">Machine Serial Number</label>
-                                <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="fetchRecordsBtn" style="visibility: hidden;">Action</label>
-                                <button type="button" id="fetchRecordsBtn" class="fetch-btn">Fetch Records</button>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="downTimeDateTime">Breakdown Date</label>
-                                <input type="date" id="downTimeDateTime" name="dateTime" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="controllerRecordId">Controller Record ID</label>
-                                <select id="controllerRecordId" name="MBP_Controller_ID" required>
-                                    <option value="">Select Controller Record</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group" style="grid-column: 1 / -1;">
-                                <label for="errorOccured">Reason Description</label>
-                                <textarea id="errorOccured" name="errorOccured" rows="4" required></textarea>
-                            </div>
+        <div id="downtime-entry" class="tab-content active">
+            <div class="card">
+                <h2>Downtime Entry</h2>
+                <div id="downtimeAlert"></div>
+                <form id="downtimeForm" action="http://localhost:5000/api/downTimeRoutes/postDownTimeRoutes" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="downtimeMachineSerial">Machine Serial Number</label>
+                            <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-                            <button type="submit" class="submit-btn">Record Downtime</button>
-                            <button type="button" class="secondary-btn" onclick="goToControllerRecords()">
-                                Controller Records
-                            </button>
+
+                        <div class="form-group">
+                            <label for="fetchRecordsBtn" style="visibility: hidden;">Action</label>
+                            <button type="button" id="fetchRecordsBtn" class="fetch-btn">Fetch Records</button>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="form-group">
+                            <label for="downTimeDateTime">Breakdown Date</label>
+                            <input type="date" id="downTimeDateTime" name="dateTime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="controllerRecordId">Controller Record ID</label>
+                            <select id="controllerRecordId" name="MBP_Controller_ID" required>
+                                <option value="">Select Controller Record</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="errorOccured">Reason Description</label>
+                            <textarea id="errorOccured" name="errorOccured" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <button type="submit" class="submit-btn">Record Downtime</button>
+                        <button type="button" class="secondary-btn" onclick="goToControllerRecords()">
+                            Controller Records
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
 
     </div>
 
