@@ -1,166 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="mas-holdings-logo-png.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBP Dashboard</title>
-    <link rel="stylesheet" href="MBP_IoT_css.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="mas-holdings-logo-png.png" />
+  <title>MBP Dashboard</title>
+  <link rel="stylesheet" href="MBP_IoT_css.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Machine Breakdown Prediction - Dashboard</h1>
-            <h4>Real-time monitoring and data management system</h4>
-        </div>
-
-        <div class="dashboard-tabs">
-            <!-- <button class="tab-button active" onclick="showTab('overview')">Overview</button> -->
-            <button class="tab-button" onclick="showTab('machine-entry')">Machine Entry</button>
-            <button class="tab-button" onclick="showTab('downtime-entry')">Downtime Entry</button>
-            <!-- <button class="tab-button" onclick="showTab('iot-data')">IoT Monitoring</button> -->
-        </div>  
-
-        <!-- Machine Entry Tab -->
-        <div id="machine-entry" class="tab-content">
-            <div class="card">
-                <h2>Machine Information Entry</h2>
-                <div id="machineAlert"></div>
-                <form id="machineForm" action="http://localhost:5000/api/machine-service" method="POST">
-                <div class="form-grid">
-                    <div class="form-group">
-                    <label for="machineSerialNumber">Machine Serial Number</label>
-                    <input type="text" id="machineSerialNumber" name="machineSerialNumber" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="brand">Brand</label>
-                        <select id="brand" name="brand" required>
-                            <option value="">Select Brand</option>
-                            <option value="Brother">Brother</option>
-                            <option value="Singer">Singer</option>
-                            <option value="Juki">Juki</option>
-                            <option value="Pfaff">Pfaff</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="model">Model</label>
-                        <input type="text" id="model" name="model" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="plant">Plant</label>
-                            <select id="plant" name="plant" required>
-                                <option value="">Select Plant</option>
-                                <option value="Plant A - Colombo">Plant A</option>
-                                <option value="Plant B">Plant B</option>
-                                <option value="Plant C">Plant C</option>
-                            </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastServiceDate">Service Date</label>
-                        <input type="date" id="lastServiceDate" name="lastServiceDate" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="needleType">Needle Type</label>
-                            <select id="needleType" name="needleType" required>
-                                <option value="">Select Needle Type</option>
-                                <option value="Universal">Universal</option>
-                                <option value="Ballpoint">Ballpoint</option>
-                                <option value="Heavy Sharp">Heavy Sharp</option>
-                                <option value="Heavy Duty">Heavy Duty</option>
-                            </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fabricType">Fabric Type</label>
-                        <input type="text" id="fabricType" name="fabricType" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="operation">Operation</label>
-                        <input type="text" id="operation" name="operation" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="styleNumber">Style Number</label>
-                        <input type="text" id="styleNumber" name="styleNumber" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Add Machine</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Downtime Entry Tab -->
-         
-        <div id="downtime-entry" class="tab-content active">
-            <div class="card">
-                <h2>Downtime Entry</h2>
-                <div id="downtimeAlert"></div>
-                <form id="downtimeForm" action="http://localhost:5000/api/downTimeRoutes/postDownTimeRoutes" method="POST">
-                    <div class="downtime-form-row">
-                        <div class="form-group form-field-large">
-                            <label for="downtimeMachineSerial">Machine Serial Number</label>
-                            <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required>
-                        </div>
-                            
-                        <div class="form-group form-field-button">
-                            <label style="visibility: hidden;">Action</label>
-                            <button type="button" id="fetchRecordsBtn" class="fetch-btn">Fetch Records</button>
-                        </div>
-
-                        <div class="form-group form-field-small">
-                            <label for="downTimeDateTime">Breakdown Date</label>
-                            <input type="date" id="downTimeDateTime" name="dateTime" required>
-                        </div>
-
-                        <div class="form-group form-field-medium">
-                            <label for="controllerRecordId">Controller Record ID</label>
-                            <select id="controllerRecordId" name="MBP_Controller_ID" required>
-                                <option value="">Select Controller Record</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="errorCode">Error Code</label>
-                        <select id="errorCode" name="errorCode" required>
-                            <option value="">Select Error Code</option>
-                            <option value="E01">E01 - Overheating</option>
-                            <option value="E02">E02 - Motor Jam</option>
-                            <option value="E03">E03 - Needle Broken</option>
-                            <option value="E04">E04 - Power Surge</option>
-                        </select>
-                    </div>
-
-                    <div class="form-grid" style="margin-top: 20px;">
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label for="solutionGiven">Given Solution</label>
-                            <textarea id="solutionGiven" name="solutionGiven" rows="1" required></textarea>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-                        <button type="submit" class="submit-btn">Record Downtime</button>
-                        <button type="button" class="secondary-btn" onclick="goToControllerRecords()">
-                            Controller Records 
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
+  <div class="container">
+    <div class="header">
+      <h1>Machine Breakdown Prediction - Dashboard</h1>
+      <h4>Real-time monitoring and data management system</h4>
     </div>
 
-    <div class="footer">
-        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© MAS KREEDA - FOF | 2025</span>
+    <div class="dashboard-tabs">
+      <button class="tab-button active" onclick="showTab('machine-entry')">Machine Entry</button>
+      <button class="tab-button" onclick="showTab('downtime-entry')">Downtime Entry</button>
     </div>
 
-    <script src="MBP_IoT_js.js"></script>
+    <!-- ===================== MACHINE ENTRY TAB ===================== -->
+    <div id="machine-entry" class="tab-content active">
+      <div class="card">
+        <h2>Machine Information Entry</h2>
+        <div id="machineAlert"></div>
+
+        <form id="machineForm" method="POST">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="machineSerialNumber">Machine Serial Number</label>
+              <input type="text" id="machineSerialNumber" name="machineSerialNumber" required />
+            </div>
+
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <select id="brand" name="brand" required>
+                <option value="">Select Brand</option>
+                <option value="Brother">Brother</option>
+                <option value="Singer">Singer</option>
+                <option value="Juki">Juki</option>
+                <option value="Pfaff">Pfaff</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="model">Model</label>
+              <input type="text" id="model" name="model" required />
+            </div>
+
+            <div class="form-group">
+              <label for="plant">Plant</label>
+              <select id="plant" name="plant" required>
+                <option value="">Select Plant</option>
+                <option value="Plant A - Colombo">Plant A</option>
+                <option value="Plant B">Plant B</option>
+                <option value="Plant C">Plant C</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="lastServiceDate">Service Date</label>
+              <input type="date" id="lastServiceDate" name="lastServiceDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="needleType">Needle Type</label>
+              <select id="needleType" name="needleType" required>
+                <option value="">Select Needle Type</option>
+                <option value="Universal">Universal</option>
+                <option value="Ballpoint">Ballpoint</option>
+                <option value="Heavy Sharp">Heavy Sharp</option>
+                <option value="Heavy Duty">Heavy Duty</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fabricType">Fabric Type</label>
+              <input type="text" id="fabricType" name="fabricType" required />
+            </div>
+
+            <div class="form-group">
+              <label for="operation">Operation</label>
+              <input type="text" id="operation" name="operation" required />
+            </div>
+
+            <div class="form-group">
+              <label for="styleNumber">Style Number</label>
+              <input type="text" id="styleNumber" name="styleNumber" required />
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Add Machine</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== DOWNTIME ENTRY TAB ===================== -->
+    <div id="downtime-entry" class="tab-content">
+      <div class="card">
+        <h2>Downtime Entry</h2>
+        <div id="downtimeAlert"></div>
+
+        <form id="downtimeForm">
+          <div class="downtime-form-row">
+            <div class="form-group form-field-large">
+              <label for="downtimeMachineSerial">Machine Serial Number</label>
+              <input type="text" id="downtimeMachineSerial" name="machineSerialNumber" required />
+            </div>
+
+            <div class="form-group form-field-button">
+              <label style="visibility: hidden;">Action</label>
+              <button type="button" id="fetchRecordsBtn" class="fetch-btn">Fetch Records</button>
+            </div>
+
+            <div class="form-group form-field-small">
+              <label for="downTimeDateTime">Breakdown Date</label>
+              <input type="date" id="downTimeDateTime" name="dateTime" required />
+            </div>
+
+            <div class="form-group form-field-medium">
+              <label for="controllerRecordId">Controller Record ID</label>
+              <select id="controllerRecordId" name="MBP_Controller_ID" required>
+                <option value="">Select Controller Record</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 🧩 Error Code + Given Solution in Same Row -->
+          <div class="form-row-two">
+            <div class="form-group">
+              <label for="errorCode">Error Code</label>
+              <select id="errorCode" name="errorCode" required>
+                <option value="">Select Error Code</option>
+                <option value="E01">E01 - Overheating</option>
+                <option value="E02">E02 - Motor Jam</option>
+                <option value="E03">E03 - Needle Broken</option>
+                <option value="E04">E04 - Power Surge</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="solutionGiven">Given Solution</label>
+              <textarea id="solutionGiven" name="solutionGiven" rows="1" required></textarea>
+            </div>
+          </div>
+
+          <!-- 🎯 Equal Size Buttons -->
+          <div class="button-row">
+            <button type="submit" class="submit-btn same-size-btn">Record Downtime</button>
+            <button type="button" class="secondary-btn same-size-btn" onclick="goToControllerRecords()">Controller Records</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© MAS KREEDA - FOF | 2025</span>
+  </div>
+
+  <script src="MBP_IoT_js.js"></script>
 </body>
 </html>
