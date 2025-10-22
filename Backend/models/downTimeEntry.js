@@ -13,20 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
 
-    errorOccured: {
+    solutionGiven: {
       type: DataTypes.STRING,
       allowNull: false
     },
     dateTime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: false
     },
 
     MBP_Controller_ID: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
-    
+
+    errorCode: {
+      type: DataTypes.STRING,
+      allowNull: false
+    } 
 
   }, {
     tableName: "MBP_ErrorLogger",

@@ -127,22 +127,34 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="brand">Error Code</label>
+                        <select id="brand" name="brand" required>
+                            <option value="">Select Error Code</option>
+                            <option value="Brother">Brother</option>
+                            <option value="Singer">Singer</option>
+                            <option value="Juki">Juki</option>
+                            <option value="Pfaff">Pfaff</option>
+                        </select>
+                    </div>
+
                     <div class="form-grid" style="margin-top: 20px;">
                         <div class="form-group" style="grid-column: 1 / -1;">
-                            <label for="errorOccured">Reason Description</label>
-                            <textarea id="errorOccured" name="errorOccured" rows="4" required></textarea>
+                            <label for="errorOccured">Given Solution</label>
+                            <textarea id="errorOccured" name="errorOccured" rows="1" required></textarea>
                         </div>
                     </div>
 
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
                         <button type="submit" class="submit-btn">Record Downtime</button>
                         <button type="button" class="secondary-btn" onclick="goToControllerRecords()">
-                            Controller Records
+                            Controller Records 
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+
     </div>
 
     <div class="footer">
