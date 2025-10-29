@@ -1,5 +1,9 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include <WiFi.h>
+
+#define SSID "Kokila Weeraman"
+#define password "labanaBawe@"
 
 // LIS3DHTR I2C address
 #define LIS3DHTR_ADDR 0x19  
@@ -56,6 +60,7 @@ void setRange(uint8_t range_g)
 
 void setup()
 {
+  WiFi.begin(SSID, password);
   Serial.begin(115200);
   Wire.begin(); // default SDA=21, SCL=22 for ESP32-S3, change if needed
   pinMode(38, OUTPUT); // Pin to indicate measurement start
@@ -71,16 +76,35 @@ void setup()
   setRange(2);
 
   Serial.println("LIS3DHTR Initialized!");
+
+  Serial.print("Connecting to WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println();
+  Serial.println("✅ Connected to WiFi!");
+  digitalWrite(38, HIGH);
+  delay(100);
+  digitalWrite(38, LOW);
+  delay(100);
+  digitalWrite(38, HIGH);
+  delay(100);
+  digitalWrite(38, LOW);
+  delay(100);
+  digitalWrite(38, HIGH);
+  delay(100);
+  digitalWrite(38, LOW);
+
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP()); // Prints the device’s IP
+
 }
 
 void loop()
 {
   int16_t x, y, z;
-
-  // digitalWrite(38, HIGH);  // Turn ON pin 38 Buzzer pin
-  // delay(3000);             // Wait for 3 seconds (3000 ms)
-  // digitalWrite(38, LOW); // Turn OFF pin 38 Buzzer pin
-  // delay(3000);  // Wait for 3 seconds (3000 ms)
 
   Wire.beginTransmission(LIS3DHTR_ADDR);
   Wire.write(LIS3DHTR_OUT_X_L | 0x80); // auto-increment
@@ -105,14 +129,13 @@ void loop()
   if (vibration > 0.9f)
   {
     Serial.println("High vibration detected!");
-    digitalWrite(38, HIGH); // Set pin 37 high if vibration > 1g
+    digitalWrite(38, HIGH); // Set pin 38 high if vibration > 1g
   }
   else
   {
-    digitalWrite(38, LOW); // Set pin 8 low if vibration <= 1g
+    digitalWrite(38, LOW); // Set pin 38 low if vibration <= 1g
   }
 
   Serial.println(buffer);
-
   delay(50);
 }
