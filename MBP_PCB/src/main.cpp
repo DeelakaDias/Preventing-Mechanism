@@ -102,15 +102,15 @@ void loop()
   // Print
   char buffer[256];
   sprintf(buffer, "X: %+07.3f g  Y: %+07.3f g  Z: %+07.3f g | Vibration: %07.3f g", x_g, y_g, z_g, vibration);
-  if (vibration > 0.7f)
-  {
-    Serial.println("High vibration detected!");
-    digitalWrite(38, HIGH); // Set pin 37 high if vibration > 1g
-  }
-  else
-  {
-    digitalWrite(38, LOW); // Set pin 8 low if vibration <= 1g
-  }
+  // if (vibration > 0.7f)
+  // {
+  //   Serial.println("High vibration detected!");
+  //   digitalWrite(38, HIGH); // Set pin 37 high if vibration > 1g
+  // }
+  // else
+  // {
+  //   digitalWrite(38, LOW); // Set pin 8 low if vibration <= 1g
+  // }
 
   Serial.println(buffer);
 
