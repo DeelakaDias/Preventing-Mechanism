@@ -2,7 +2,7 @@
 #include <Wire.h>
 
 // LIS3DHTR I2C address
-#define LIS3DHTR_ADDR 0x19
+#define LIS3DHTR_ADDR 0x19  
 
 // LIS3DHTR registers
 #define LIS3DHTR_WHO_AM_I 0x0F
