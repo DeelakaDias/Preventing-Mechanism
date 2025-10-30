@@ -2,8 +2,10 @@
 #include <Wire.h>
 #include <WiFi.h>
 
-#define SSID "Kokila Weeraman"
-#define password "labanaBawe@"
+#define SSID "Mr.Wifi"
+#define password "LabanaBawe#@12"
+// #define SSID "Dyzenn"
+// #define password "kokila75"
 
 // LIS3DHTR I2C address
 #define LIS3DHTR_ADDR 0x19  
