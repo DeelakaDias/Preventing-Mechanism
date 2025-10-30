@@ -4,8 +4,9 @@
 
 #define SSID "Mr.Wifi"
 #define password "LabanaBawe#@12"
+
 // #define SSID "Dyzenn"
-// #define password "kokila75"
+// #define password "Kokila75"
 
 // LIS3DHTR I2C address
 #define LIS3DHTR_ADDR 0x19  
@@ -128,7 +129,7 @@ void loop()
   // Print
   char buffer[256];
   sprintf(buffer, "X: %+07.3f g  Y: %+07.3f g  Z: %+07.3f g | Vibration: %07.3f g", x_g, y_g, z_g, vibration);
-  if (vibration > 0.9f)
+  if (vibration > 0.1f)
   {
     Serial.println("High vibration detected!");
     digitalWrite(38, HIGH); // Set pin 38 high if vibration > 1g
