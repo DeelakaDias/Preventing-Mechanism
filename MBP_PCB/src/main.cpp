@@ -38,7 +38,7 @@ void setup() {
  
   initLIS3DHTR();
   setRange(2);
-  Serial.println("✅ LIS3DHTR initialized.");
+  Serial.println("LIS3DHTR initialized");
 }
  
 // ------------------- MAIN LOOP -------------------
@@ -85,7 +85,7 @@ void loop() {
  
   Serial.println(payload);
  
-  delay(1000);
+  delay(100);
 }
  
 // ------------------- LIS3DHTR INIT -------------------
