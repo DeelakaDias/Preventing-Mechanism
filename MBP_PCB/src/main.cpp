@@ -38,7 +38,8 @@ void setup() {
  
   initLIS3DHTR();
   setRange(2);
-  Serial.println("LIS3DHTR initialized");
+  Serial.println("           LIS3DHTR initialized");
+  Serial.println("\n");
 }
  
 // ------------------- MAIN LOOP -------------------
@@ -80,9 +81,11 @@ void loop() {
   }
   double dominantFreq = (peakIndex * actualFs) / SAMPLE_SIZE; 
   // ---- 5. SEND OR PRINT RESULTS ----
-  String payload = String("{\"freq\":") + String(dominantFreq, 2) +
-                  ", \"Fs\":" + String(actualFs, 2) + "}";
- 
+
+  // String payload = String("{\"freq\":") + String(dominantFreq, 2) +
+  //                 ", \"Fs\":" + String(actualFs, 2) + "}";
+
+  String payload = String("{\"freq\":") + String(dominantFreq, 2) + "}";
   Serial.println(payload);
  
   delay(100);
