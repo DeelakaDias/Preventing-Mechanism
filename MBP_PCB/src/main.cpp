@@ -32,5 +32,5 @@ void setup() {
 void loop() {
   blSensor.update();
   blSensor.loop(); 
-  delay(3000);
+  delay(1000);
 }
