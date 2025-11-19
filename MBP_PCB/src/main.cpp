@@ -21,10 +21,8 @@ void dataReceivedCallback(bl0942::SensorData &data) {
 void setup() {
   pinMode(5, OUTPUT);   // Set pin 5 as an output
   digitalWrite(5, HIGH); // Turn pin 5 ON (HIGH voltage)
-  
   Serial.begin(115200);
   Serial1.begin(9600, SERIAL_8N1, BL0942_RX, BL0942_TX); // Must be called by user
-
   blSensor.setup();  // Use default ModeConfig
   blSensor.onDataReceived(dataReceivedCallback);
 }
@@ -32,5 +30,6 @@ void setup() {
 void loop() {
   blSensor.update();
   blSensor.loop(); 
-  delay(1000);
+  Serial.println("");
+  delay(2500);
 }
