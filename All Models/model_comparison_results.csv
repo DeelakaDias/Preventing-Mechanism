@@ -1,0 +1,5 @@
+Model,Accuracy (%),F1 Score,RMSE,MAE
+LSTM (Baseline 1),77.06,0.8067,0.9515,0.4073
+GRU (Baseline 2),62.92,0.7201,1.4218,0.7912
+CNN-LSTM (Baseline 3),92.04,0.8823,0.5439,0.1386
+FAG-TFT (Proposed),91.85,0.8813,0.5457,0.1404
