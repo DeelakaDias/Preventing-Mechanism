@@ -1,4 +1,0 @@
-Model,Accuracy (%),F1 Score,RMSE,MAE
-LSTM Forecaster (Baseline 1),87.11,0.8766,0.3591,0.1289
-GRU Forecaster (Baseline 2),92.08,0.9019,0.2814,0.0792
-TFT Forecaster (Proposed),82.54,0.8526,0.4179,0.1746
