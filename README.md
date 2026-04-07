@@ -300,8 +300,4 @@ If you use this work, please cite:
 
 **Deelaka Dias** — [@DeelakaDias](https://github.com/DeelakaDias)
 
----
-
-<div align="center">
-Made with ❤️ for smarter, more reliable garment manufacturing
-</div>
+--
