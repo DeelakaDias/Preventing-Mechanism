@@ -10,9 +10,35 @@ The system works in two stages:
 
 It reads 67 features from vibration and electrical sensors attached to the machine.
 
-## 🔌 Hardware & IoT
-Two ESP32 boards work together to collect sensor data during each sewing cycle:
+## 📁 Repo Structure
+- `00_Data_Preparation.ipynb` - FFT processing and feature engineering
+- `01 & 02` - LSTM and GRU baselines
+- `03_FAG_TFT_Forecaster.ipynb` - Binary fault detector (Model A)
+- `04_FAG_TFT.ipynb` - Fault type classifier (Model B)
+- `05_Model_Comparison.ipynb` - All models compared
+- `06_Live_Analyser.ipynb` - Real-time inference
 
-**Vibration Board** - reads acceleration via LIS3DHTR sensor, runs FFT and sends 60 frequency band values (10Hz - 600Hz) over CAN bus.
+## 📊 Results
 
-**Main Board** - monitors voltage and current via BL0942 sensor, triggers the vibration board via CAN, combines both readings and sends the full 67-feature payload to Azure IoT Hub via MQTT.
+| Model | Accuracy | F1 |
+|---|---|---|
+| FAG-TFT Binary (Model A) | 97.37% | 0.9739 |
+| FAG-TFT Type (Model B) | 91.79% | 0.9190 |
+
+### Training Loss
+!Training Loss
+
+### Confusion Matrix
+!Confusion Matrix
+
+### Feature Group Importance
+!Feature Group Importance
+
+### Model Forecast Comparison
+!Forecast Comparison
+
+## 🚀 Run it
+```bash
+pip install torch numpy pandas matplotlib scikit-learn jupyter
+```
+Requires **Python 3.12.5** Then run notebooks in order from `00` to `06`
