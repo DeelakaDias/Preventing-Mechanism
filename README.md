@@ -1,4 +1,4 @@
-# FAG-TFT — Fault Anticipation Gateway using Temporal Fusion Transformer
+# FAG-TFT - Fault Anticipation Gateway using Temporal Fusion Transformer
 
 A deep learning system that predicts mechanical breakdowns in industrial sewing machines
 before they happen — built as part of my undergraduate thesis at IIT.
