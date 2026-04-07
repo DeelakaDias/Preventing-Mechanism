@@ -1,7 +1,7 @@
 # FAG-TFT - Frequency Aware Gated Temporal Fusion Transformer
 
-A machine learning system for predictive maintenance using time-series forecasting,
-applied to industrial sewing machines - built as part of my undergraduate thesis at IIT.
+A deep learning system for predictive maintenance using time-series forecasting,
+applied to industrial sewing machines.
 
 ## 🔍 What it does
 The system works in two stages:
