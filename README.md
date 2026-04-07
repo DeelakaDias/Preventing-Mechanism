@@ -42,6 +42,3 @@ It reads 67 features from vibration and electrical sensors attached to the machi
 pip install torch numpy pandas matplotlib scikit-learn jupyter
 ```
 Then run notebooks in order from `00` to `06`.
-
-## 📬 Contact
-Deelaka Dias — deelakadias2002@gmail.com
