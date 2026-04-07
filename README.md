@@ -26,19 +26,19 @@ It reads 67 features from vibration and electrical sensors attached to the machi
 | FAG-TFT Type (Model B) | 91.79% | 0.9190 |
 
 ### Training Loss
-!Training Loss
+![Training Loss](Implementation/fag_tft_loss.png)
 
 ### Confusion Matrix
-!Confusion Matrix
+![Confusion Matrix](Implementation/fag_tft_confusion.png)
 
 ### Feature Group Importance
-!Feature Group Importance
+![Feature Group Importance](Implementation/fag_tft_group_importance.png)
 
 ### Model Forecast Comparison
-!Forecast Comparison
+![Forecast Comparison](Implementation/forecast_comparison.png)
 
 ## 🚀 Run it
 ```bash
 pip install torch numpy pandas matplotlib scikit-learn jupyter
 ```
-Requires **Python 3.12.5** Then run notebooks in order from `00` to `06`
+Requires **Python 3.12.5** Then run notebooks in order from `00` to `06`.
