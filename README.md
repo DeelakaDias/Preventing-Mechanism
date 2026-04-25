@@ -51,3 +51,19 @@ Identifies the current machine state in real time across 4 classes:
 ---
 
 ## Project Structure
+
+| Notebook | Description |
+|---|---|
+| `00_Data_Preparation.ipynb` | Data preprocessing and feature engineering |
+| `01_Forecasting_LSTM_Baseline.ipynb` | LSTM baseline model |
+| `02_Forecasting_GRU_Baseline.ipynb` | GRU baseline model |
+| `03_FAG_TFT_Forecaster.ipynb` | FAG-TFT Forecaster (Model A & B) |
+| `04_FAG_TFT.ipynb` | FAG-TFT Classifier |
+| `05_Model_Comparison.ipynb` | Comparative analysis |
+| `06_Live_Analyser.ipynb` | Live inference system |
+
+---
+
+## Requirements ⚙️
+
+> **Python 3.12.5** is required to run this project.
