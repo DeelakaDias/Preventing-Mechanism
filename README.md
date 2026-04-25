@@ -2,7 +2,7 @@
 
 ### FAG-TFT Based Forecasting and Fault Classification System
 
-A deep learning-based predictive maintenance system for industrial sewing machines, developed and deployed on a Juki single-needle lockstitch machine at MAS Holdings, Sri Lanka.
+A deep learning-based predictive maintenance system for industrial sewing machines.
 
 ---
 
