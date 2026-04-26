@@ -1,4 +1,4 @@
-# Predictive Maintenance for Industrial Sewing Machines 🔧
+# 🧵Predictive Maintenance for Industrial Sewing Machines
 
 ### FAG-TFT Based Forecasting and Fault Classification System
 
